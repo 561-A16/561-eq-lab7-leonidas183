@@ -10,7 +10,7 @@
 ## Objectif
 - Avoir deux images: 
   - L'une nommée **webapp:test** qui exécute les tests de l'application web et, dans le cas d'un succès, publie le site web.
-  - L'autre nommée **webapp:release** qui exécute l'application web à partir des fichiers publiés. 
+  - L'autre nommée **webapp:release** qui exécute l'application web à partir des fichiers publiés (Dll seulement). 
 - Copier (manuellement, en ligne de commande) l'image webapp:release sur docker hub
 
 ## Étapes
@@ -28,8 +28,9 @@
    - L'option *-v $PWD/publish:/root/publish*, nous permet de conserver les fichiers publiés dans le conteneur (*/root/publish*) en local (*$PWD/publish*) dans le but de les copier dans la prochaine image.
   
 ### Création de l'image d'exécution du site web 
+- Ce conteneur doit contenir que les fichiers publiés (dll)
 - Le nom du dockerfile est **release** (à mettre dans le dossier *dockerfile*)
-- Ce dockerfile n'a pas besoin de script.
+- Ce dockerfile n'a pas besoin de script. Le conteneur doit simplement exécuter l'instruction: dotnet webapp.dll 
 - L'image doit être basée sur **microsoft/dotnet:latest** et non **ymazieres/dotnet:compile**. Cette dernière étant utile pour la compilation, elle n'est pas nécessaire pour l'exécution des fichiers publiés.
 - Pour construire l'image: ** docker build -t webapp:release -f ./dockerfile/release .**
 - Pour tester l'image *release* en local, exécuter le conteneur: **docker run -it --rm -p 8080:5000 webapp:release**
