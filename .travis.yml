@@ -2,6 +2,10 @@ sudo: required
 
 language: csharp
 
+branches:
+    only:
+        - master
+
 cache:
     directories:
         - packages
@@ -11,6 +15,8 @@ services:
 
 before_install:
     - docker build -t webapp:test -f ./dockerfile .
+    #- docker build -t webapp:release -f ./dockerfile/release .
 
 script:
-    - docker run -it -v $PWD/packages:/root/.nuget/packages webapp:test
+    - docker run -it --rm -v $PWD/publish:/root/publish -v $PWD/packages:/root/.nuget/packages webapp:test
+    #- docker run -it --rm -p 8080:5000 webapp:release
