@@ -47,4 +47,4 @@
    docker login -u=ymazieres -p=monmotdepasse
    docker push ymazieres/webapp:latest
 ```
-- Faire un push de l'image **webapp:release** dans votre compte docker hub (**VOTRE_NOM_UTILISATEUR_DOCKER_HUB/webapp:latest**)
+- Faire un push de l'image **webapp:release** dans votre compte docker hub (**leonidas183/webapp:latest**)

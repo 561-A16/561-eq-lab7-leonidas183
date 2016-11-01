@@ -14,7 +14,7 @@ services:
     - docker
 
 before_install:
-    - docker build -t webapp:test -f ./dockerfile .
+    - docker build -t webapp:test -f ./dockerfile/test .
     #- docker build -t webapp:release -f ./dockerfile/release .
 
 script:
