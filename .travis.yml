@@ -8,7 +8,7 @@ branches:
 
 cache:
     directories:
-        - packages
+        - ~/.nuget/packages
 
 services:
     - docker
